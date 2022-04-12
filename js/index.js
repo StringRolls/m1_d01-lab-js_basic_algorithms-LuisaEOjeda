@@ -20,7 +20,7 @@ log(`The navigator's name is ${hacker2}`)
 if (hacker1.length > hacker2.length) {
     log(`The driver has the longest name, it has ${hacker1.length} characters`)
 } else if ((hacker1.length === hacker2.length)) {
-    log(`Wow, you both have equally long names, ${hacker1} characters!`)
+    log(`Wow, you both have equally long names, ${hacker1.length} characters!`)
 } else {
     log(`It seems that the navigator has the longest name, it has ${hacker2.length} characters`)
 }
@@ -80,13 +80,18 @@ log (wordCount);
 function countString(str, word) {
     let count = 0;
 
-    for (let i = 0; i < str.length; i++) {
+    for (let i = 0; i < str.length-4; i++) {
 
-        if (str.charAt(i) == word) {
-            count = count + 1;
-        }
+       if(str.slice(i, i+4) === " et ") count++
     }
-    return count;
+
+    for (let i = str.length-1 ; i > 0; i--) {
+        if(str[i] === "." || str[i] === "," || str[i] === "!" || str[i] === " ") continue;
+        if(str.slice(i, i-3) === " et") count++
+        break;
+     }
+ 
+       return count;
 };
 
 log(countString(myStringLorem, 'et'));
